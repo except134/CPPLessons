@@ -1,5 +1,9 @@
 #pragma once
 
+#include "Common.h"
+#include "Task1.h"
+#include "Task2.h"
+
 class Lesson
 {
 public:
