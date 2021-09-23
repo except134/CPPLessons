@@ -53,6 +53,9 @@ public:
         std::cout << "Мое " << a.GetName() << " " << a.GetColor() << ".\n";
         std::cout << "Мой " << b.GetName() << " " << b.GetColor() << ".\n";
         std::cout << "Мое " << c.GetName() << " " << c.GetColor() << ".\n";
+
+        std::cout << "Нажмите любую клавишу..." << std::endl;
+        getchar();
     }
 };
 

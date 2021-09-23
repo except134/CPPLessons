@@ -30,6 +30,9 @@ void Lesson::Task3()
     std::cout << "Задача 3" << std::endl;
     std::cout << "=========================" << std::endl;
 
+    Game g;
+    g.Run();
+
     std::cout << std::endl;
 }
 

@@ -1,8 +1,9 @@
 #pragma once
 
+const int KEY_EXIT = 'q';
+
 enum class CardFace : int
 {
-    Zero,
     Ace,
     Two,
     Three,
@@ -13,8 +14,8 @@ enum class CardFace : int
     Eight,
     Nine,
     Ten,
-    Vallet,
-    Dama,
+    Jack,
+    Queen,
     King,
     Max
 };
@@ -23,45 +24,46 @@ enum class CardSuit : int
 {
     Heart,
     Spade,
-    Cross,
+    Club,
     Diamond,
     Max
-};
-
-enum class CardPlace : int
-{
-    Player,
-    Dealer,
-    Deck
 };
 
 class Card
 {
 public:
     Card() = default;
-    Card(CardFace f, CardSuit s, CardPlace p = CardPlace::Deck, bool opened = false) :
+    Card(CardFace f, CardSuit s, bool opened = false) :
         face(f),
         suit(s),
-        place(p),
         isOpened(opened)
     {
     }
 
-    void Flip()
-    {
-        isOpened =! isOpened;
-    }
-
+    void Open() { isOpened = true; }
     bool IsOpened() { return isOpened; }
     CardFace GetFace() { return face; }
-    CardPlace GetPlace() { return place; }
-    void MoveToPlace(CardPlace p) { place = p; }
+
+    int GetNominal()
+    {
+        if(face >= CardFace::Ace && face <= CardFace::Nine)
+            return static_cast<int>(face) + 1;
+        else if(face >= CardFace::Ten && face <= CardFace::King)
+            return 10;
+
+        return 0;
+    }
+
+    void Show()
+    {
+        std::cout << (isOpened ? facesChar[static_cast<size_t>(face)] : "X");
+    }
 
 private:
     bool isOpened{false};
-    CardFace face{CardFace::Zero};
+    CardFace face{CardFace::Max};
     CardSuit suit{CardSuit::Heart};
-    CardPlace place{CardPlace::Deck};
+    const char* facesChar[static_cast<size_t>(CardFace::Max)]{"A","2","3","4","5","6","7","8","9","10","J","Q","K"};
 };
 
 class Deck
@@ -90,7 +92,7 @@ public:
         std::shuffle(deck.begin(), deck.end(), rnd);
     }
 
-    Card GetTopCard()
+    Card GetCard()
     {
         Card ret = deck.back();
         deck.pop_back();
@@ -110,23 +112,41 @@ public:
 
     void OpenAllCards()
     {
+        for(auto& c: cards)
+            c.Open();
     }
 
     void ShowCards()
     {
+        for(auto& c: cards)
+            c.Show();
     }
 
-    void GetCardsFromDeck(const Deck& deck, int count)
+    void ShowPoints()
     {
+        for(auto& c: cards) {
+            int n = c.GetNominal();
+
+           // if(f >= CardFace::Two)
+        }
+    }
+
+    void GetCardsFromDeck(Deck& deck, int count)
+    {
+        for(int i = 0; i < count; ++i) {
+            cards.emplace_back(deck.GetCard());
+        }
     }
 
     void Reset()
     {
         cards.clear();
+        sumOfCards = 0;
     }
 
 private:
     std::vector<Card> cards;
+    int sumOfCards{0};
 };
 
 class Dealer : public Player
@@ -140,10 +160,43 @@ class Game
 public:
     void Run()
     {
+        bool done = false;
+
+        deck.Initialize();
+        deck.Shuffle();
+
+        player.GetCardsFromDeck(deck, 3);
+
+        dealer.GetCardsFromDeck(deck, 5);
+        dealer.OpenAllCards();
+
+        while(!done) {
+            int keyPressed = getchar();
+
+            if(keyPressed == KEY_EXIT)
+                done = true;
+
+        }
+    }
+
+    void Show()
+    {
+        system("clear");
+
+        std::cout << "========== BLACK JACK ==========" << std::endl << std::endl;
+        std::cout << "  Карты диллера: ";
+        dealer.ShowCards();
+        std::cout << std::endl;
+        std::cout << "  Очки диллера: ";
+        dealer.ShowPoints();
+        std::cout << std::endl;
+        std::cout << std::endl;
+
     }
 
 private:
     Player player;
     Dealer dealer;
+    Deck deck;
 };
 
