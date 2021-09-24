@@ -11,12 +11,32 @@ public:
         mass(m)
         {};
 
-    void Set(const std::string& n, int a, bool isW, int m)
+    void SetName(const std::string& n)
     {
         name = n;
+    }
+
+    void SetAge(int a)
+    {
         age = a;
+    }
+
+    void SetIsWomen(bool isW)
+    {
         isWoman = isW;
+    }
+
+    void SetMass(int m)
+    {
         mass = m;
+    }
+
+    void Set(const std::string& n, int a, bool isW, int m)
+    {
+        SetName(n);
+        SetAge(a);
+        SetIsWomen(isW);
+        SetMass(m);
     }
 
     const std::string& GetName() const { return name; }
