@@ -40,7 +40,7 @@ public:
     {
     }
 
-    void Open() { isOpened = true; }
+    int Open() { isOpened = true; return GetNominal(); }
     bool IsOpened() { return isOpened; }
     CardFace GetFace() { return face; }
 
@@ -56,7 +56,7 @@ public:
 
     void Show()
     {
-        std::cout << (isOpened ? facesChar[static_cast<size_t>(face)] : "X");
+        std::cout << (isOpened ? facesChar[static_cast<size_t>(face)] : "X") << " ";
     }
 
 private:
@@ -112,8 +112,12 @@ public:
 
     void OpenAllCards()
     {
-        for(auto& c: cards)
-            c.Open();
+        for(auto& c: cards) {
+            int r = c.Open();
+            if(c.GetFace() == CardFace::Ace && sumOfCards == 20)
+                r = 1;
+            sumOfCards += r;
+        }
     }
 
     void ShowCards()
@@ -124,11 +128,7 @@ public:
 
     void ShowPoints()
     {
-        for(auto& c: cards) {
-            int n = c.GetNominal();
-
-           // if(f >= CardFace::Two)
-        }
+        std::cout << sumOfCards;
     }
 
     void GetCardsFromDeck(Deck& deck, int count)
@@ -171,6 +171,8 @@ public:
         dealer.OpenAllCards();
 
         while(!done) {
+            Show();
+
             int keyPressed = getchar();
 
             if(keyPressed == KEY_EXIT)
@@ -191,6 +193,18 @@ public:
         dealer.ShowPoints();
         std::cout << std::endl;
         std::cout << std::endl;
+
+        std::cout << "  Карты игрока: ";
+        player.ShowCards();
+        std::cout << std::endl;
+        std::cout << "  Очки игрока: ";
+        player.ShowPoints();
+        std::cout << std::endl;
+        std::cout << std::endl;
+    }
+
+    void ProcessInput()
+    {
 
     }
 
