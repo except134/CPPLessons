@@ -83,14 +83,14 @@ class StudentsProcess
 public:
     void Run()
     {
-        students.push_back(Student("Студент 1", 20, false, 75, 2021));
-        students.push_back(Student("Студент 2", 21, false, 65, 2020));
-        students.push_back(Student("Студент 3", 18, false, 55, 2019));
-        students.push_back(Student("Студентка 1", 19, true, 60, 2018));
-        students.push_back(Student("Студентка 2", 22, true, 58, 2017));
-        students.push_back(Student("Студентка 3", 20, true, 57, 2021));
+        students.emplace_back(Student("Студент 1", 20, false, 75, 2021));
+        students.emplace_back(Student("Студент 2", 21, false, 65, 2020));
+        students.emplace_back(Student("Студент 3", 18, false, 55, 2019));
+        students.emplace_back(Student("Студентка 1", 19, true, 60, 2018));
+        students.emplace_back(Student("Студентка 2", 22, true, 58, 2017));
+        students.emplace_back(Student("Студентка 3", 20, true, 57, 2021));
 
-        for(auto a: students) {
+        for(auto& a: students) {
             a.Print();
             std::cout << std::endl;
         }
