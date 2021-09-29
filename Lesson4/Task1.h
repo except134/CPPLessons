@@ -103,12 +103,12 @@ public:
         return ret;
     }
 
-    void Sort()
+    void sort()
     {
         std::sort(&m_data[0],&m_data[m_length]);
     }
 
-    void Print()
+    void print()
     {
         std::cout << "(";
         for(int index = 0; index < m_length; ++index) {

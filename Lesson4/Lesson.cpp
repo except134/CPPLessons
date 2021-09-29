@@ -14,26 +14,26 @@ void Lesson::Task1()
     for(int i = 0; i < ARR_SIZE; ++i)
         arr.push_back(i + 1);
 
-    arr.Print();
+    arr.print();
 
 
     std::cout << "Уменьшаем размер на 10  : ";
     arr.resize(ARR_SIZE - 10);
-    arr.Print();
+    arr.print();
 
     std::cout << "Убираем два последних   : ";
     arr.pop_back();
     arr.pop_back();
-    arr.Print();
+    arr.print();
 
     std::cout << "Убираем два первых      : ";
     arr.pop_front();
     arr.pop_front();
-    arr.Print();
+    arr.print();
 
     std::cout << "Вставляем в 3 позицию 99: ";
     arr.insertBefore(99, 2);
-    arr.Print();
+    arr.print();
 
     std::cout << std::endl;
 
@@ -47,11 +47,11 @@ void Lesson::Task1()
     for(int i = 0; i < ARR_SIZE; ++i)
         arr.push_back(dist(rnd));
 
-    arr.Print();
+    arr.print();
 
     std::cout << "Отсортированный массив  : ";
-    arr.Sort();
-    arr.Print();
+    arr.sort();
+    arr.print();
 
     std::cout << std::endl;
 }
