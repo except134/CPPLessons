@@ -53,14 +53,22 @@ public:
         return 0;
     }
 
-    void Show()
-    {
-        std::cout << (isOpened ? facesChar[static_cast<size_t>(face)] : "X") << " ";
-    }
+    friend std::ostream& operator<<(std::ostream& os, const Card& c);
 
 private:
     bool isOpened{false};
     CardFace face{CardFace::Max};
     CardSuit suit{CardSuit::Max};
-    const char* facesChar[static_cast<size_t>(CardFace::Max)]{"A","2","3","4","5","6","7","8","9","10","J","Q","K"};
 };
+
+inline std::ostream& operator<<(std::ostream& os, const Card& c)
+{
+
+    if(c.isOpened) {
+        os << facesChar[c.face] << suitsChar[c.suit];
+    } else {
+        os << "XX";
+    }
+
+    return os;
+}

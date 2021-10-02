@@ -21,7 +21,7 @@ public:
     int GetValue()
     {
         int total = 0;
-        for(auto* c: cards) {
+        for(auto c: cards) {
             total += c->GetNominal();
             if(total <= 21 && c->GetFace() == CardFace::Ace)
                 total += 10;
@@ -31,14 +31,14 @@ public:
 
     void Open()
     {
-        for(auto* c: cards) {
+        for(auto c: cards) {
             c->Open();
         }
     }
 
     void Show()
     {
-        for(auto* c: cards) {
+        for(auto c: cards) {
             c->Show();
         }
         std::cout << std::endl;
