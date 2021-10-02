@@ -67,7 +67,7 @@ void Lesson::Task2()
     std::default_random_engine rnd(std::chrono::system_clock::now().time_since_epoch().count());
     std::uniform_int_distribution<int> dist(1, 100);
 
-    auto Print = [&](auto& v) {
+    auto Print = [&](const std::vector<int>& v) {
         std::cout << "(";
         for(int index = 0; index < v.size(); ++index) {
             if(index != 0)
