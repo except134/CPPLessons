@@ -6,6 +6,11 @@ void Lesson::Task1()
     std::cout << "Задача 1" << std::endl;
     std::cout << "=========================" << std::endl;
 
+    Card K(CardFace::King, CardSuit::Diamond);
+    K.Open();
+    std::cout << K << std::endl;
+    K.Show();
+
 
     std::cout << std::endl;
 }

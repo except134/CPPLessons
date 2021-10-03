@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Common.h"
+#include "GenericPlayer.h"
 #include "Task1.h"
 #include "Task2.h"
 #include "Task3.h"
