@@ -6,6 +6,7 @@ class Hand
 {
 public:
     Hand() = default;
+    virtual ~Hand(){};
 
     void Add(Card* c)
     {
@@ -15,16 +16,20 @@ public:
 
     void Clear()
     {
+        for(auto c: cards)
+            delete c;
         cards.clear();
     }
 
-    int GetValue()
+    int GetTotal() const
     {
+        const int PointsThenAceEleven = 11;
+
         int total = 0;
         for(auto c: cards) {
             total += c->GetNominal();
-            if(total <= 21 && c->GetFace() == CardFace::Ace)
-                total += 10;
+            if(total <= PointsThenAceEleven && c->GetFace() == CardFace::Ace)
+                total += (PointsThenAceEleven-1);
         }
         return total;
     }
@@ -44,6 +49,6 @@ public:
         std::cout << std::endl;
     }
 
-private:
+protected:
     std::vector<Card*> cards{};
 };
