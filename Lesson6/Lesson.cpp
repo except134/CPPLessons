@@ -1,21 +1,7 @@
 #include "Lesson.h"
 
-template<typename T>
-Foo<T>::Foo()
-{
-    // ...
-}
-template<typename T>
-void Foo<T>::someMethod(T x)
-{
-    // ...
-}
-
 void Lesson::Task1()
 {
-    Foo<int> f;
-    f.someMethod(5);
-    
     std::cout << "=========================" << std::endl;
     std::cout << "Задача 1" << std::endl;
     std::cout << "=========================" << std::endl;
