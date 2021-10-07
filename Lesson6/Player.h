@@ -9,7 +9,7 @@ public:
         GenericPlayer(name)
     {}
 
-    virtual bool IsHitting() const
+    virtual bool IsHitting() const override
     {
         char c = GetUserInput<char>(name + ", хотите взять карту?");
         return (c=='y' || c=='Y');

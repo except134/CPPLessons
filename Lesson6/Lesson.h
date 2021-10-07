@@ -11,4 +11,14 @@ class Lesson
 public:
     void Task1();
     void Task2();
+    void BlackjackTest();
+};
+
+template<typename T>
+class Foo {
+public:
+    Foo();
+    void someMethod(T x);
+private:
+    T x;
 };
