@@ -27,7 +27,7 @@ inline std::ostream& operator<<(std::ostream& stream, const GenericPlayer& p)
     if(p.cards.empty()) {
         stream << "Карт нету.";
     } else {
-        for(auto c: p.cards) {
+        for(const auto& c: p.cards) {
             stream << *c << "\t";
         }
 

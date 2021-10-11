@@ -16,7 +16,7 @@ public:
 
     void Clear()
     {
-        for(auto c: cards)
+        for(const auto& c: cards)
             delete c;
         cards.clear();
     }
@@ -26,7 +26,7 @@ public:
         const int PointsThenAceEleven = 11;
 
         int total = 0;
-        for(auto c: cards) {
+        for(const auto& c: cards) {
             total += c->GetNominal();
             if(total <= PointsThenAceEleven && c->GetFace() == CardFace::Ace)
                 total += (PointsThenAceEleven-1);
@@ -36,14 +36,14 @@ public:
 
     void Open()
     {
-        for(auto c: cards) {
+        for(const auto& c: cards) {
             c->Open();
         }
     }
 
     void Show()
     {
-        for(auto c: cards) {
+        for(const auto& c: cards) {
             c->Show();
         }
         std::cout << std::endl;

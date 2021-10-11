@@ -68,8 +68,8 @@ private:
 
 inline std::ostream& operator<<(std::ostream& os, const Card& c)
 {
-    const std::string facesChar[static_cast<size_t>(CardFace::Max)]{"A","2","3","4","5","6","7","8","9","10","J","Q","K"};
-    const std::string suitsChar[static_cast<size_t>(CardSuit::Max)]{"H","S","C","D"};
+    const std::array facesChar{"A","2","3","4","5","6","7","8","9","10","J","Q","K"};
+    const std::array suitsChar{"H","S","C","D"};
 
     if(c.isOpened) {
         os << facesChar[static_cast<size_t>(c.face)] << suitsChar[static_cast<size_t>(c.suit)];
