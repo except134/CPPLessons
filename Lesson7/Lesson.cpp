@@ -6,6 +6,7 @@ void Lesson::Task1()
     std::cout << "Задача 1" << std::endl;
     std::cout << "=========================" << std::endl;
 
+
 }
 
 void Lesson::Task2()

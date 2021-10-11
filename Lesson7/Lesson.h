@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Common.h"
-#include "Task1.h"
-#include "Task2.h"
+#include "Tools.h"
+#include "Date.h"
 #include "Player.h"
 #include "House.h"
 
