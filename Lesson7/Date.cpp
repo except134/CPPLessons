@@ -107,7 +107,7 @@ bool operator>=(const Date& d1, const Date& d2)
 
 std::ostream& operator<<(std::ostream& stream, const Date& date)
 {
-    if(!date.IsValid()) {
+    if(date.CheckForFebruaryAndNotLeapYear() && !date.IsValid()) {
         stream << "Дата (плохой формат даты): " << date.day << "." << date.month << "." << date.year;
     }
     else
