@@ -2,6 +2,7 @@
 
 #include "Common.h"
 #include "Tools.h"
+#include "SmartPtr.h"
 #include "Date.h"
 #include "Player.h"
 #include "House.h"

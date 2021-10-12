@@ -35,7 +35,7 @@ public:
     friend std::ostream& operator<<(std::ostream& os, const Day& d);
 
 private:
-    unsigned int day;
+    unsigned int day{1};
     static const int FIRST_DAY{1};
     static const int LAST_DAY{31};
 };

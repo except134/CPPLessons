@@ -46,7 +46,7 @@ public:
         month(m),
         year(y)
     {
-        if(CheckForFebruaryAndNotLeapYear()) {
+        if(CheckForFebruaryAndNotLeapYear() || !IsValid()) {
             std::cout << "Дата (плохой формат даты): " << day << "." << month << "." << year << std::endl;
             exit(-1);
         }
@@ -64,6 +64,13 @@ public:
     Date  operator--(int);
 
     bool IsValid() const                    { return day.IsValid(DaysInMonth[static_cast<unsigned int>(month)]) && month.IsValid() && year.IsValid(); }
+
+    friend bool operator==(const Date& d1, const Date& d2);
+    friend bool operator!=(const Date& d1, const Date& d2);
+    friend bool operator<(const Date& d1, const Date& d2);
+    friend bool operator>(const Date& d1, const Date& d2);
+    friend bool operator<=(const Date& d1, const Date& d2);
+    friend bool operator>=(const Date& d1, const Date& d2);
 
     friend std::ostream& operator<<(std::ostream& stream, const Date& date);
 

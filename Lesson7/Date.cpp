@@ -62,6 +62,49 @@ Date Date::operator--(int)
     return temp;
 }
 
+bool operator==(const Date& d1, const Date& d2)
+{
+    return d1.year == d2.year && d1.month == d2.month && d1.day == d2.day;
+}
+
+bool operator!=(const Date& d1, const Date& d2)
+{
+    return !(d1 == d2);
+}
+
+bool operator<(const Date& d1, const Date& d2)
+{
+    return
+        d1.year < d2.year ? true :
+        (
+            d1.year > d2.year ? false :
+            (
+                d1.month < d2.month ? true :
+                (
+                    d1.month > d2.month ? false :
+                    (
+                        d1.day < d2.day
+                    )
+                )
+            )
+        );
+}
+
+bool operator>(const Date& d1, const Date& d2)
+{
+    return d2 < d1;
+}
+
+bool operator<=(const Date& d1, const Date& d2)
+{
+    return !(d2 < d1);
+}
+
+bool operator>=(const Date& d1, const Date& d2)
+{
+    return !(d1 < d2);
+}
+
 std::ostream& operator<<(std::ostream& stream, const Date& date)
 {
     if(!date.IsValid()) {

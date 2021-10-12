@@ -40,7 +40,7 @@ public:
     friend std::ostream& operator<<(std::ostream& os, const Year& y);
 
 private:
-    int year;
+    int year{2021};
 };
 
 inline bool operator==(const Year& y1, const Year& y2)

@@ -35,7 +35,7 @@ public:
     static unsigned int Maximal()           { return LAST_MONTH; }
 
 private:
-    unsigned int month;
+    unsigned int month{1};
     static const int FIRST_MONTH{1};
     static const int LAST_MONTH{12};
 };
