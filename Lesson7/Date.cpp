@@ -1,51 +1,35 @@
 #include "Lesson.h"
 #include "Date.h"
 
-Date::Date(unsigned int d, unsigned int m, unsigned int y)
- {
-    SetDay(d);
-    SetMonth(m);
-    SetYear(y);
-}
-
-bool Date::IsValidDay() const
+bool Date::CheckForFebruaryAndNotLeapYear() const
 {
-    return (day > 0 && day <= 31);
-}
-
-bool Date::IsValidMonth() const
-{
-    return (month > 0 && month <= 12);
-}
-
-bool Date::IsValidYear() const
-{
-    return (year >= 1 && year <= 9999);
-}
-
-bool Date::IsLeapYear() const
-{
-    return ((year % 4 == 0 && year % 100 != 0) || year % 400);
+    return( static_cast<unsigned int>(month) == MonthNames::February &&
+            !year.IsLeap() &&
+            static_cast<unsigned int>(day) == DaysInMonth[MonthNames::February]);
 }
 
 Date& Date::operator++()
 {
-    day++;
-    if(day == 32) {
-        day = 1;
-        month++;
-        if(month == 13) {
-            month = 1;
-            year++;
+    ++day;
+
+    if(static_cast<unsigned int>(day) > (year.IsLeap() ? DaysInMonth[static_cast<unsigned int>(month)] : DaysInMonth[static_cast<unsigned int>(month)] - 1)) {
+        day = Day::Minimal();
+        ++month;
+        if(static_cast<unsigned int>(month) > Month::Maximal()) {
+            month = Month::Minimal();
+            ++year;
         }
     }
+
+    if(CheckForFebruaryAndNotLeapYear())
+        --day;
 
     return *this;
 }
 
 Date Date::operator++(int)
 {
-    Date temp(day, month, year);
+    auto temp(*this);
 
     ++(*this);
 
@@ -54,14 +38,16 @@ Date Date::operator++(int)
 
 Date& Date::operator--()
 {
-    day--;
-    if(day == 0) {
-        day = 31;
-        month--;
-        if(month == 0) {
-            month = 12;
-            year--;
+    --day;
+    if(static_cast<unsigned int>(day) < Day::Minimal()) {
+        day = DaysInMonth[static_cast<unsigned int>(month) - 1];
+        --month;
+        if(static_cast<unsigned int>(month) < Month::Minimal()) {
+            month = Month::Maximal();
+            --year;
         }
+        if(CheckForFebruaryAndNotLeapYear())
+            --day;
     }
 
     return *this;
@@ -69,24 +55,20 @@ Date& Date::operator--()
 
 Date Date::operator--(int)
 {
-    Date temp(day, month, year);
+    auto temp(*this);
 
     --(*this);
 
     return temp;
 }
 
-void Date::SetDay(unsigned int d)
+std::ostream& operator<<(std::ostream& stream, const Date& date)
 {
-    day = d;
+    if(!date.IsValid()) {
+        stream << "Дата (плохой формат даты): " << date.day << "." << date.month << "." << date.year;
+    }
+    else
+        stream << date.day << "." << date.month << "." << date.year;
+    return stream;
 }
 
-void Date::SetMonth(unsigned int m)
-{
-    month = m;
-}
-
-void Date::SetYear(unsigned int y)
-{
-    year = y;
-}
