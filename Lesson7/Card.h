@@ -48,7 +48,7 @@ public:
         if(face >= CardFace::Ace && face <= CardFace::Nine)
             return static_cast<int>(face) + 1;
         else if(face >= CardFace::Ten && face <= CardFace::King)
-            return 10;
+            return static_cast<int>(CardFace::Ten);
 
         return 0;
     }
