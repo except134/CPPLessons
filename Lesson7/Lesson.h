@@ -6,6 +6,8 @@
 #include "Date.h"
 #include "Player.h"
 #include "House.h"
+#include "Deck.h"
+#include "Game.h"
 
 class Lesson
 {

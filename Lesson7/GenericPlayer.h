@@ -10,7 +10,7 @@ public:
 
     virtual bool IsHitting() const = 0;
 
-    bool IsBoosted() { return (GetTotal() > PointsToWin); }
+    bool IsBusted() { return (GetTotal() > PointsToWin); }
     void Bust() { std::cout << "У игрока " << name << " перебор :(" << std::endl; }
 
     friend std::ostream& operator<<(std::ostream& stream, const GenericPlayer& p);

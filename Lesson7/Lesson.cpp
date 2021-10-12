@@ -73,4 +73,24 @@ void Lesson::BlackjackTest()
     std::cout << "Blackjack test" << std::endl;
     std::cout << "=========================" << std::endl;
 
+    int numPlayers = 0;
+    while (numPlayers < 1 || numPlayers > 7) {
+        numPlayers = GetUserInput<int>("Сколько будет игроков? (1 - 7)");
+    }
+
+    std::vector<std::string> names;
+    std::string name;
+    for (int i = 0; i < numPlayers; ++i) {
+        std::cout << "Введите имя игрока " << i+1 << ": ";
+        std::cin >> name;
+        names.emplace_back(name);
+    }
+    std::cout << std::endl;
+
+    Game game(names);
+    char again = 'y';
+    while (again != 'n' && again != 'N') {
+        game.Play();
+        again = GetUserInput<char>("Поиграем еще? (Y/N)");
+    }
 }

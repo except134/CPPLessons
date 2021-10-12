@@ -6,7 +6,10 @@ class Hand
 {
 public:
     Hand() = default;
-    virtual ~Hand(){};
+    virtual ~Hand()
+    {
+        Clear();
+    }
 
     void Add(Card* c)
     {
