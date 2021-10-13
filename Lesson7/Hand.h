@@ -34,6 +34,7 @@ public:
             if(total <= PointsThenAceEleven && c->GetFace() == CardFace::Ace)
                 total += (PointsThenAceEleven-1);
         }
+
         return total;
     }
 

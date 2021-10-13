@@ -25,7 +25,9 @@ private:
 
 inline void Game::Play()
 {
-    for (int i = 0; i < 2; ++i) {
+    const int MinimumPlayersIncludeDealer = 2;
+
+    for (int i = 0; i < MinimumPlayersIncludeDealer; ++i) {
         for (auto& pPlayer: players) {
             deck.Deal(pPlayer);
         }
