@@ -3,7 +3,7 @@
 class DivisionByZeroException
 {
 public:
-    DivisionByZeroException(std::string msg = "", std::string file = "", int line = 0) :
+    DivisionByZeroException(const std::string& msg = "", const std::string& file = "", int line = 0) :
         message(msg),
         fileName(file),
         lineNumber(line)
